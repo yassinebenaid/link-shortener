@@ -1,3 +1,11 @@
-@tailwind utilities;
 @tailwind base;
+@tailwind utilities;
 @tailwind components;
+
+html {
+    font-family: "Roboto", sans-serif;
+}
+
+.btn {
+    @apply bg-dark  hover:bg-dark/90 active:opacity-90  border-transparent border-2 disabled:border-dark disabled:text-dark disabled:bg-dark/80 select-none  flex items-center justify-center gap-1 text-sm to-5% transition-all focus:ring-4 focus:ring-dark/30  text-white px-5 py-2 rounded-full font-semibold;
+}

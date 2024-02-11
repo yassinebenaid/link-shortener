@@ -68,6 +68,21 @@ class RegistrationTest extends TestCase
             ]);
 
         $this->assertGuest();
+
+        User::factory()->create(['email' => 'ysbenaid@gmail.com']);
+
+        $this->post(route('register'), [
+            'name' => 'yassinebenaid',
+            'email' => 'ysbenaid@gmail.com',
+            'password' => 'password',
+            'password_confirmation' => 'password',
+        ])
+            ->assertRedirect()
+            ->assertSessionHasErrors([
+                'email',
+            ]);
+
+        $this->assertGuest();
     }
 
     public function testCanRegister(): void

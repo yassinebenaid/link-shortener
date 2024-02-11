@@ -19,7 +19,7 @@ module.exports = {
             backgroundColor: ["active"],
         },
     },
-    content: ["resources/ts/**/*.vue", "resources/ts/**/*.ts"],
+    content: ["resources/js/**/*.vue", "resources/js/**/*.ts"],
     plugins: [
         require("@tailwindcss/forms"),
         require("@tailwindcss/typography"),
