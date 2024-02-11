@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Link Shortener</title>
 
-    <link rel="shortcut icon" href="favicon.svg" type="image/svg">
+    <link rel="shortcut icon" href="/favicon.svg" type="image/svg">
 
     @vite('resources/js/app.ts')
     @inertiaHead
