@@ -9,7 +9,7 @@
 
     <link rel="shortcut icon" href="favicon.svg" type="image/svg">
 
-    @vite('resources/ts/app.ts')
+    @vite('resources/js/app.ts')
     @inertiaHead
 </head>
 
