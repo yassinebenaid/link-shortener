@@ -18,7 +18,7 @@ class LinkFactory extends Factory
     {
         return [
             'original' => fake()->url(),
-            'slug' => fake()->unique()->slug()
+            'slug' => fake()->unique()->slug(),
         ];
     }
 }
