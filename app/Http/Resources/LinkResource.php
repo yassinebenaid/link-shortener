@@ -19,7 +19,7 @@ class LinkResource extends JsonResource
             'slug' => $this->slug,
             'original' => $this->original,
             'created_at' => $this->created_at->diffForHumans(),
-            'url' => route('links.out', $this->slug)
+            'url' => route('links.out', $this->slug),
         ];
     }
 }
