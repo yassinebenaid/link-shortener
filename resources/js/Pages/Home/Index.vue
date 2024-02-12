@@ -1,11 +1,15 @@
 <script setup lang="ts">
 import Primary from '@/Layout/Primary.vue';
 import Stats from './Partials/Stats.vue';
+import ClicksHistory from './Partials/ClicksHistory.vue';
 
 const props = defineProps<{
     totalLinks: number;
     totalClicks: number;
+    clicksHistory: { day: number, count: number }[]
 }>()
+
+console.log(props.clicksHistory)
 </script>
 <template>
     <Primary>
@@ -15,9 +19,9 @@ const props = defineProps<{
                     Dashboard
                 </div>
             </section>
-            <section>
-                <Stats :links="totalLinks" :clicks="totalClicks" />
-            </section>
+
+            <Stats :links="totalLinks" :clicks="totalClicks" />
+            <ClicksHistory :clicks-history="clicksHistory" />
         </div>
     </Primary>
 </template>

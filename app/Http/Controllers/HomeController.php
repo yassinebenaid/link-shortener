@@ -47,7 +47,7 @@ class HomeController extends Controller
 
             if (isset($history[$day->format('d/m')])) {
                 $history[$day->format('d/m')] = [
-                    'day' => $day->format('d'),
+                    'day' => $day->format('d/m'),
                     'count' => $value,
                 ];
             }
