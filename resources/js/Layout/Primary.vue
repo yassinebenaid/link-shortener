@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { User } from '@/types/user';
 import { usePage } from '@inertiajs/vue3';
+import { ref } from 'vue';
 import { computed } from 'vue';
 
 const user = usePage().props.authUser as User || null;
@@ -8,6 +9,8 @@ const user = usePage().props.authUser as User || null;
 const userNameFirstCharacters = computed(() => {
     return user?.name.split(" ").map(e => e[0]).join("")
 })
+
+const userModelOpen = ref(false)
 </script>
 
 <template>
@@ -34,14 +37,40 @@ const userNameFirstCharacters = computed(() => {
                 </div>
             </A>
 
-
-
-            <div class="flex items-center gap-2 text-sm">
-                <strong class="block">
-                    {{ user?.name }}
-                </strong>
-                <div class="p-2 font-bold text-white uppercase rounded-full bg-dark/80">
-                    {{ userNameFirstCharacters }}
+            <div class="relative">
+                <div @click="userModelOpen = true" role="button" class="flex items-center gap-2 text-sm opacity-100 ">
+                    <strong class="block">
+                        {{ user?.name }}
+                    </strong>
+                    <div class="p-2 font-bold text-white uppercase rounded-full bg-dark/80">
+                        {{ userNameFirstCharacters }}
+                    </div>
+                </div>
+                <div v-if="userModelOpen"
+                    class="absolute top-0 right-0 flex flex-col gap-1 p-2 bg-white rounded-md shadow-lg w-60">
+                    <div class="flex items-center gap-2">
+                        <div class="grid place-content-center">
+                            <div class="p-2 text-xl font-bold text-white uppercase rounded-full bg-dark/80">
+                                {{ userNameFirstCharacters }}
+                            </div>
+                        </div>
+                        <div class="flex-1">
+                            <strong class="block">
+                                {{ user?.name }}
+                            </strong>
+                            <small>
+                                {{ user?.email }}
+                            </small>
+                        </div>
+                        <A :href="route('logout')" method="delete" replace as="button">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-5 h-5" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd"
+                                    d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z" />
+                                <path fill-rule="evenodd"
+                                    d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z" />
+                            </svg>
+                        </A>
+                    </div>
                 </div>
             </div>
         </header>
