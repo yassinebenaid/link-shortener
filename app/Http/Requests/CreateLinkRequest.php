@@ -16,7 +16,7 @@ class CreateLinkRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'original' => 'required|string|max:255',
+            'original' => 'required|string|max:255|url',
             'slug' => 'required|string|max:255|regex:#^[A-z0-9]+(-[A-z0-9]+)*$#|unique:links,slug',
         ];
     }

@@ -3,6 +3,10 @@ import Input from '@/Components/Input.vue';
 import { useForm } from '@inertiajs/vue3';
 import { ref } from 'vue';
 
+const emit = defineEmits<{
+    (e: 'refresh'): void
+}>()
+
 const modelIsOpen = ref(false)
 
 const form = useForm({
@@ -14,6 +18,7 @@ function submit(): void {
     form.post(route('links.store'), {
         replace: true,
         onSuccess: () => {
+            emit('refresh')
             form.reset()
             modelIsOpen.value = false
         }
@@ -57,7 +62,7 @@ function submit(): void {
                     </div>
                     <div class="p-2">
                         <Input v-model="form.original" :error="form.errors?.original" required label="Original URL"
-                            id="original" />
+                            id="original" type="url" />
                         <Input v-model="form.slug" :error="form.errors?.slug" label="Slug (Optional)" id="slug" />
                     </div>
                     <div class="flex items-center justify-end p-2">

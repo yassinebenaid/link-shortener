@@ -29,7 +29,7 @@ function deleetLink(id: number): void {
                 <div class="text-2xl font-bold">
                     My Links
                 </div>
-                <Create />
+                <Create @refresh="refresh" />
             </section>
             <section class="flex flex-col gap-5">
                 <Table @refresh="refresh" :labels="{
@@ -52,7 +52,7 @@ function deleetLink(id: number): void {
                             <td class="px-2 py-3 text-sm whitespace-nowrap">
                                 {{ link.created_at }}
                             </td>
-                            <td>
+                            <td class="px-5">
                                 <Delete @delete="deleetLink(link.id)" :href="route('links.destroy', link)" />
                             </td>
                         </tr>
