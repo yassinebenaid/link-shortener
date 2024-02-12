@@ -9,7 +9,7 @@ const props = defineProps<{
 </script>
 <template>
     <Primary>
-        <div class="flex flex-col gap-10 p-2">
+        <div class="flex flex-col gap-5 p-2">
             <section class="flex items-center justify-between">
                 <div class="text-2xl font-bold">
                     Dashboard

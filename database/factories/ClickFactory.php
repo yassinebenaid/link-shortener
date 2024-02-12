@@ -21,8 +21,8 @@ class ClickFactory extends Factory
             'model_type' => Link::class,
             'platform' => ['linux', 'windows', 'macos', 'android'][rand(0, 3)],
             'device' => ['mobile', 'robot', 'desktop', 'tablet'][rand(0, 3)],
-            'created_at' => now(),
-            'updated_at' => now(),
+            'created_at' => now()->subDays(rand(0, 30)),
+            'updated_at' => now()->subDays(rand(0, 30)),
         ];
     }
 }
