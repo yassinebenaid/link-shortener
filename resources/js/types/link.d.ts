@@ -3,6 +3,7 @@ export declare interface Link {
     original: string;
     slug: string;
     created_at: string;
+    url: string;
 }
 
 export declare interface LinksCollection {

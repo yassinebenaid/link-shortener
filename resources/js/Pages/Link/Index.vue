@@ -34,9 +34,9 @@ function deleetLink(id: number): void {
             <section class="flex flex-col gap-5">
                 <Table @refresh="refresh" :labels="{
                     id: '#',
+                    url: 'URL',
                     original: 'Original',
-                    slug: 'Slug',
-                    created_at: 'Created At'
+                    created_at: 'Created'
                 }" :sort="sort" :ignore="['slug', 'original']" :empty="!linksList.length" collection-name="links">
                     <template #body>
                         <tr v-for="link in linksList" :key="link.id">
@@ -44,10 +44,10 @@ function deleetLink(id: number): void {
                                 {{ link.id }}
                             </td>
                             <td class="px-2 py-3 text-sm whitespace-nowrap">
-                                {{ link.original }}
+                                {{ link.url }}
                             </td>
                             <td class="px-2 py-3 text-sm whitespace-nowrap">
-                                {{ link.slug }}
+                                {{ link.original }}
                             </td>
                             <td class="px-2 py-3 text-sm whitespace-nowrap">
                                 {{ link.created_at }}
