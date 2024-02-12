@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import Table from '@/Components/Table.vue';
+import Create from './Partials/Create.vue';
 import Primary from '../Layout/Primary.vue';
 import type { LinksCollection } from '@/types/link';
-import { computed } from 'vue';
 import { ref } from 'vue';
 
 const props = defineProps<{
@@ -25,9 +25,7 @@ function refresh(): void {
                 <div class="text-2xl font-bold">
                     My Links
                 </div>
-                <div class="btn">
-                    Create
-                </div>
+                <Create />
             </section>
             <section class="flex flex-col gap-5">
                 <Table @refresh="refresh" :labels="{
