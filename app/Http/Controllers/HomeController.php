@@ -21,6 +21,13 @@ class HomeController extends Controller
             'clicksHistory' => fn () => $this->getClicksHistory($request->user()),
             'clicksByPlatform' => fn () => $this->getClicksByField($request->user(), 'platform', 5),
             'clicksByDevice' => fn () => $this->getClicksByField($request->user(), 'device', 5),
+            'topProducts' => fn () => $request->user()
+                ->links()
+                ->withCount('clicks')
+                ->latest('clicks_count')
+                ->having('clicks_count', '>', 0)
+                ->take(5)
+                ->get(),
         ]);
     }
 
