@@ -17,8 +17,9 @@ If you are running linux, you need to clone this repository, then in the project
 ```bash
 git clone https://github.com/yassinebenaid/link-shortener.git
 
-2. Navigate to application root directory:
 ```
+
+2. Navigate to application root directory:
 
 ```bash
 cd link-shortener
