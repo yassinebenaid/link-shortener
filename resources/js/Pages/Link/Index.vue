@@ -4,6 +4,7 @@ import Create from './Partials/Create.vue';
 import Primary from '../Layout/Primary.vue';
 import type { LinksCollection } from '@/types/link';
 import { ref } from 'vue';
+import Delete from './Partials/Delete.vue';
 
 const props = defineProps<{
     sort: string;
@@ -16,6 +17,9 @@ function refresh(): void {
     linksList.value = props.links.data
 }
 
+function deleetLink(id: number): void {
+    linksList.value = linksList.value.filter(e => e.id != id)
+}
 </script>
 
 <template>
@@ -47,6 +51,9 @@ function refresh(): void {
                             </td>
                             <td class="px-2 py-3 text-sm whitespace-nowrap">
                                 {{ link.created_at }}
+                            </td>
+                            <td>
+                                <Delete @delete="deleetLink(link.id)" :href="route('links.destroy', link)" />
                             </td>
                         </tr>
                     </template>
