@@ -1,7 +1,11 @@
-<script setup>
+<script setup lang="ts">
 import Primary from '@/Layout/Primary.vue';
 import Stats from './Partials/Stats.vue';
 
+const props = defineProps<{
+    totalLinks: number;
+    totalClicks: number;
+}>()
 </script>
 <template>
     <Primary>
@@ -12,7 +16,7 @@ import Stats from './Partials/Stats.vue';
                 </div>
             </section>
             <section>
-                <Stats />
+                <Stats :links="totalLinks" :clicks="totalClicks" />
             </section>
         </div>
     </Primary>
