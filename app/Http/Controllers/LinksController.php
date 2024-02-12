@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateLinkRequest;
 use App\Http\Resources\LinkResource;
+use App\Models\Click;
 use App\Models\Link;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response as HttpResponse;
 use Inertia\Response;
+use Jenssegers\Agent\Agent;
 
 class LinksController extends Controller
 {
@@ -54,6 +56,15 @@ class LinksController extends Controller
         if (! $link) {
             return inertia('Link/Invalid');
         }
+
+        $agent = new Agent();
+
+        Click::create([
+            'model_id' => $link->id,
+            'model_type' => $link::class,
+            'platform' => $agent->platform(),
+            'device' => $agent->deviceType(),
+        ]);
 
         return redirect($link->original);
     }

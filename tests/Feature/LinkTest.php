@@ -168,4 +168,22 @@ class LinkTest extends TestCase
         ]))
             ->assertRedirect($link->original);
     }
+
+    public function testANewClickIsCreatedWhenUsingTheLink(): void
+    {
+        $user = User::factory()->create();
+        $link = Link::factory()->create(['user_id' => $user->id]);
+
+        $this->assertDatabaseMissing('clicks', [
+            'model_type' => $link::class,
+            'model_id' => $link->getKey(),
+        ]);
+
+        $this->get(route('links.out', ['link' => $link->slug]))->assertRedirect($link->original);
+
+        $this->assertDatabaseHas('clicks', [
+            'model_type' => $link::class,
+            'model_id' => $link->getKey(),
+        ]);
+    }
 }
