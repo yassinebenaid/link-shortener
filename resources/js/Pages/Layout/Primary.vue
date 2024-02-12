@@ -1,3 +1,15 @@
+<script setup lang="ts">
+import type { User } from '@/types/user';
+import { usePage } from '@inertiajs/vue3';
+import { computed } from 'vue';
+
+const user = usePage().props.authUser as User || null;
+
+const userNameFirstCharacters = computed(() => {
+    return user?.name.split(" ").map(e => e[0]).join("")
+})
+</script>
+
 <template>
     <div class="container flex flex-col h-screen mx-auto text-dark">
         <header class="flex items-center justify-between p-2">
@@ -24,23 +36,18 @@
 
 
 
-            <A v-if="route().current('register')" :href="route('login')"
-                class="px-3 py-2 text-sm font-semibold transition-all rounded-md active:ring-4 active:ring-dark/20 hover:bg-gray-50 active:bg-gray-100">
-                Login
-            </A>
-
-            <A v-else :href="route('register')"
-                class="px-3 py-2 text-sm font-semibold transition-all rounded-md active:ring-4 active:ring-dark/20 hover:bg-gray-50 active:bg-gray-100">
-                Create Account
-            </A>
+            <div class="flex items-center gap-2 text-sm">
+                <strong class="block">
+                    {{ user?.name }}
+                </strong>
+                <div class="p-2 font-bold text-white uppercase rounded-full bg-dark/80">
+                    {{ userNameFirstCharacters }}
+                </div>
+            </div>
         </header>
 
-        <main class="grid flex-1 place-content-center">
+        <main class="flex-1">
             <slot />
         </main>
-
-        <footer class="p-5 text-sm text-center text-dark/50">
-            Copyright 2024 - Yassine Benaid
-        </footer>
     </div>
 </template>
