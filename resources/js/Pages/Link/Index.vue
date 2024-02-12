@@ -66,11 +66,11 @@ function deleetLink(id: number): void {
                 </Table>
 
                 <nav class="flex items-center justify-between gap-2 text-sm">
-                    <A :href="links.links.prev ?? ''" :disabled="!links.links.prev" as="button"
+                    <A :href="links.links.prev ?? ''" :disabled="!links.links.prev"
                         class="px-3 py-1 rounded-md disabled:text-dark/70 hover:bg-gray-100 active:bg-gray-200">
                         Previous
                     </A>
-                    <A :href="links.links.next ?? ''" :disabled="!links.links.next" as="button"
+                    <A :href="links.links.next ?? ''" :disabled="!links.links.next"
                         class="px-3 py-1 rounded-md disabled:text-dark/70 hover:bg-gray-100 active:bg-gray-200">
                         Next
                     </A>

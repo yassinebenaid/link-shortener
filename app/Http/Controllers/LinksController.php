@@ -24,6 +24,7 @@ class LinksController extends Controller
                     ->sortBy($sort)
                     ->withCount('clicks')
                     ->paginate()
+                    ->withQueryString()
             ),
         ]);
     }
