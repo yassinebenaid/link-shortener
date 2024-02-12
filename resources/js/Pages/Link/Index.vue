@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import Table from '@/Components/Table.vue';
 import Create from './Partials/Create.vue';
-import Primary from '../Layout/Primary.vue';
+import Primary from '@/Layout/Primary.vue';
 import type { LinksCollection } from '@/types/link';
 import { ref } from 'vue';
 import Delete from './Partials/Delete.vue';
@@ -68,7 +68,7 @@ function deleetLink(id: number): void {
                 <nav class="flex items-center justify-between gap-2 text-sm">
                     <A :href="links.links.prev ?? ''" :disabled="!links.links.prev" as="button"
                         class="px-3 py-1 rounded-md disabled:text-dark/70 hover:bg-gray-100 active:bg-gray-200">
-                        Previos
+                        Previous
                     </A>
                     <A :href="links.links.next ?? ''" :disabled="!links.links.next" as="button"
                         class="px-3 py-1 rounded-md disabled:text-dark/70 hover:bg-gray-100 active:bg-gray-200">
