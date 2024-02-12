@@ -11,6 +11,20 @@ const config: ChartConfiguration = {
     options: {
         plugins: {
             legend: { position: 'bottom' }
+        },
+        interaction: {
+            intersect: false,
+        },
+        scales: {
+            x: {
+                display: true,
+            },
+            y: {
+                display: true,
+                min: 0,
+                suggestedMin: -10,
+                suggestedMax: 200
+            }
         }
     },
     data: {
