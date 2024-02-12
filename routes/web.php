@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegistrationController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LinksController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,9 +18,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/', function () {
-        return inertia('Home/Index');
-    })->name('home');
+    Route::get('/', HomeController::class)->name('home');
 
     Route::get('/links', [LinksController::class, 'index'])->name('links.index');
     Route::post('/links', [LinksController::class, 'store'])->name('links.store');

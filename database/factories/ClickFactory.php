@@ -19,7 +19,7 @@ class ClickFactory extends Factory
     {
         return [
             'model_type' => Link::class,
-            'plaform' => ['linux', 'windows', 'macos', 'android'][rand(0, 3)],
+            'platform' => ['linux', 'windows', 'macos', 'android'][rand(0, 3)],
             'device' => ['mobile', 'robot', 'desktop', 'tablet'][rand(0, 3)],
             'created_at' => now(),
             'updated_at' => now(),

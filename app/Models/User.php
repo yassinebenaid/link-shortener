@@ -5,6 +5,7 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -47,5 +48,10 @@ class User extends Authenticatable
     public function links(): HasMany
     {
         return $this->hasMany(Link::class, 'user_id');
+    }
+
+    public function clicks(): HasManyThrough
+    {
+        return $this->hasManyThrough(Click::class, Link::class, 'user_id', 'model_id')->where('model_type', Link::class);
     }
 }
