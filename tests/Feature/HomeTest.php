@@ -41,7 +41,7 @@ class HomeTest extends TestCase
                 ->where('clicksByPlatform.0.count', 20)
                 ->where('clicksByDevice.0.label', 'test')
                 ->where('clicksByDevice.0.count', 20)
-                ->count('topProducts', 1)
-                ->where('topProducts.0.id', $links->first()->id));
+                ->count('topLinks', 1)
+                ->where('topLinks.0.id', $links->first()->id));
     }
 }
