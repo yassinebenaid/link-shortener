@@ -2,14 +2,16 @@
 import Primary from '@/Layout/Primary.vue';
 import Stats from './Partials/Stats.vue';
 import ClicksHistory from './Partials/ClicksHistory.vue';
+import ClicksByField from './Partials/ClicksByField.vue';
 
-const props = defineProps<{
+defineProps<{
     totalLinks: number;
     totalClicks: number;
-    clicksHistory: { day: number, count: number }[]
+    clicksHistory: { day: number, count: number }[];
+    clicksByPlatform: { label: string, count: number }[];
+    clicksByDevice: { label: string, count: number }[];
 }>()
 
-console.log(props.clicksHistory)
 </script>
 <template>
     <Primary>
@@ -21,7 +23,14 @@ console.log(props.clicksHistory)
             </section>
 
             <Stats :links="totalLinks" :clicks="totalClicks" />
-            <ClicksHistory :clicks-history="clicksHistory" />
+            <div class="grid-cols-3 xl:grid">
+                <div class="xl:col-span-2">
+                    <ClicksHistory :clicks-history="clicksHistory" />
+                </div>
+                <div>
+                    <ClicksByField :by-platform="clicksByPlatform" :by-device="clicksByDevice" />
+                </div>
+            </div>
         </div>
     </Primary>
 </template>
