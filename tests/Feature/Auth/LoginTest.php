@@ -43,10 +43,10 @@ class LoginTest extends TestCase
             ->assertSessionDoesnthaveErrors('password')
             ->assertSessionHasErrors(['email']);
 
-        User::factory()->create(['email' => 'ysbenaid@gmail.com']);
+        $user = User::factory()->create(['email' => fake()->unique()->email()]);
 
         $this->post(route('login'), [
-            'email' => 'ysbenaid@gmail.com',
+            'email' => $user->email,
             'password' => 'invalid-password',
         ])
             ->assertRedirect()
@@ -55,10 +55,10 @@ class LoginTest extends TestCase
 
     public function testCanLogin(): void
     {
-        $user = User::factory()->create(['email' => 'ysbenaid@gmail.com']);
+        $user = User::factory()->create(['email' => fake()->unique()->email()]);
 
         $this->post(route('login'), [
-            'email' => 'ysbenaid@gmail.com',
+            'email' => $user->email,
             'password' => 'password',
         ])
             ->assertRedirect()

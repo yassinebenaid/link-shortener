@@ -69,11 +69,11 @@ class RegistrationTest extends TestCase
 
         $this->assertGuest();
 
-        User::factory()->create(['email' => 'ysbenaid@gmail.com']);
+        $user = User::factory()->create(['email' => fake()->unique()->email()]);
 
         $this->post(route('register'), [
             'name' => 'yassinebenaid',
-            'email' => 'ysbenaid@gmail.com',
+            'email' => $user->email,
             'password' => 'password',
             'password_confirmation' => 'password',
         ])
@@ -87,14 +87,16 @@ class RegistrationTest extends TestCase
 
     public function testCanRegister(): void
     {
+        $email = fake()->unique()->email();
+
         $this->assertDatabaseMissing('users', [
             'name' => 'yassinebenaid',
-            'email' => 'ysbenaid@gmail.com',
+            'email' => $email,
         ]);
 
         $this->post(route('register'), [
             'name' => 'yassinebenaid',
-            'email' => 'ysbenaid@gmail.com',
+            'email' => $email,
             'password' => 'password',
             'password_confirmation' => 'password',
         ])
@@ -103,7 +105,7 @@ class RegistrationTest extends TestCase
 
         $this->assertDatabaseHas('users', [
             'name' => 'yassinebenaid',
-            'email' => 'ysbenaid@gmail.com',
+            'email' => $email,
         ]);
     }
 }
