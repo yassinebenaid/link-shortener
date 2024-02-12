@@ -27,6 +27,21 @@ class LinkTest extends TestCase
                 ->count('links.data', 10));
     }
 
+    public function testCanSortLinks(): void
+    {
+        $user = User::factory()->create();
+        $links = Link::factory(10)->create(['user_id' => $user->id]);
+
+        $this->actingAs($user)
+            ->get(route('links.index', ['sort' => 'id.desc']))
+            ->assertOk()
+            ->assertInertia(fn (AssertableInertia $page) => $page
+                ->component('Link/Index')
+                ->count('links.data', 10)
+                ->where('links.data.0.id', $links->last()->id)
+                ->etc());
+    }
+
     public function testGuestsCannotCreateLinks(): void
     {
         $this->postJson(route('links.store'))->assertStatus(401);
