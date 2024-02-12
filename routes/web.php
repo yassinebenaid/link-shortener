@@ -23,6 +23,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/links', [LinksController::class, 'index'])->name('links.index');
     Route::post('/links', [LinksController::class, 'store'])->name('links.store');
     Route::delete('/links/{link}', [LinksController::class, 'destroy'])->name('links.destroy');
+
+    Route::delete('auth/logout', [LoginController::class, 'logout'])->name('logout');
 });
 
 Route::prefix('auth')->middleware('guest')->group(function () {

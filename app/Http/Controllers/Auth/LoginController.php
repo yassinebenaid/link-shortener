@@ -19,4 +19,12 @@ class LoginController extends Controller
 
         return to_route('home');
     }
+
+    public function logout()
+    {
+        auth()->logout();
+        session()->invalidate();
+
+        return to_route('login');
+    }
 }
