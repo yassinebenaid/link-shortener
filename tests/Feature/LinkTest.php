@@ -147,4 +147,25 @@ class LinkTest extends TestCase
 
         $this->assertNull($link->fresh());
     }
+
+    public function testCannotUseInvalidLink(): void
+    {
+        $this->get(
+            route('links.out', [
+                'link' => 'invalid',
+            ])
+        )->assertInertia(fn (AssertableInertia $page) => $page
+            ->component('Link/Invalid'));
+    }
+
+    public function testCanUseLink(): void
+    {
+        $user = User::factory()->create();
+        $link = Link::factory()->create(['user_id' => $user->id]);
+
+        $this->get(route('links.out', [
+            'link' => $link->slug,
+        ]))
+            ->assertRedirect($link->original);
+    }
 }

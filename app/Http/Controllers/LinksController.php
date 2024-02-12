@@ -46,4 +46,15 @@ class LinksController extends Controller
 
         return response(status: 204);
     }
+
+    public function out(string $link): RedirectResponse|Response
+    {
+        $link = Link::where('slug', $link)->first();
+
+        if (! $link) {
+            return inertia('Link/Invalid');
+        }
+
+        return redirect($link->original);
+    }
 }
