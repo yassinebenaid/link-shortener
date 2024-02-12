@@ -4,6 +4,7 @@ export declare interface Link {
     slug: string;
     created_at: string;
     url: string;
+    clicks?: number;
 }
 
 export declare interface LinksCollection {

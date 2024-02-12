@@ -35,6 +35,7 @@ function deleetLink(id: number): void {
                 <Table @refresh="refresh" :labels="{
                     id: '#',
                     url: 'URL',
+                    clicks_count: 'Clicks',
                     original: 'Original',
                     created_at: 'Created'
                 }" :sort="sort" :ignore="['slug', 'original']" :empty="!linksList.length" collection-name="links">
@@ -44,7 +45,12 @@ function deleetLink(id: number): void {
                                 {{ link.id }}
                             </td>
                             <td class="px-2 py-3 text-sm whitespace-nowrap">
-                                {{ link.url }}
+                                <a :href="link.url" target="_blank" class="hover:text-blue-500 hover:underline">
+                                    {{ link.url }}
+                                </a>
+                            </td>
+                            <td class="px-2 py-3 text-sm whitespace-nowrap">
+                                {{ link.clicks }}
                             </td>
                             <td class="px-2 py-3 text-sm whitespace-nowrap">
                                 {{ link.original }}

@@ -19,7 +19,11 @@ class LinksController extends Controller
         return inertia('Link/Index', [
             'sort' => $sort = $request->str('sort')->value(),
             'links' => LinkResource::collection(
-                $request->user()->links()->sortBy($sort)->paginate()
+                $request->user()
+                    ->links()
+                    ->sortBy($sort)
+                    ->withCount('clicks')
+                    ->paginate()
             ),
         ]);
     }
