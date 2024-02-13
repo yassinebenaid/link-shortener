@@ -116,7 +116,7 @@ To stop the application and remove any related containers:
 
 ## How to start it again?
 
-To stop the application and remove any related containers:
+To run the application again
 
 ```bash
 ./vendor/bin/sail up -d
