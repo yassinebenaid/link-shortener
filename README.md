@@ -2,6 +2,12 @@
 
 A web application that allows users to shorten long urls into a short, more manageable urls.
 
+![Home](./docs/home.png)
+![Home 2](./docs/home-2.png)
+![Links](./docs/links.png)
+![Create Link](./docs/create.png)
+![Delete Link](./docs/delete.png)
+
 # Local Setup
 
 _The installation process assumes you have `docker compose` installed_
