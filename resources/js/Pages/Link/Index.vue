@@ -58,7 +58,7 @@ function deleetLink(id: number): void {
                             <td class="px-2 py-3 text-sm whitespace-nowrap">
                                 {{ link.created_at }}
                             </td>
-                            <td class="px-5">
+                            <td class="flex items-center justify-end px-5">
                                 <Delete @delete="deleetLink(link.id)" :href="route('links.destroy', link)" />
                             </td>
                         </tr>
