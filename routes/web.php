@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegistrationController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LinksController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +17,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/', HomeController::class)->name('home');
+
+    Route::get('/links', [LinksController::class, 'index'])->name('links.index');
+    Route::post('/links', [LinksController::class, 'store'])->name('links.store');
+    Route::delete('/links/{link}', [LinksController::class, 'destroy'])->name('links.destroy');
+
+    Route::delete('auth/logout', [LoginController::class, 'logout'])->name('logout');
 });
+
+Route::prefix('auth')->middleware('guest')->group(function () {
+    Route::get('login', [LoginController::class, 'create'])->name('login');
+    Route::post('login', [LoginController::class, 'store']);
+    Route::get('register', [RegistrationController::class, 'create'])->name('register');
+    Route::post('register', [RegistrationController::class, 'store']);
+});
+
+Route::get('/{link}', [LinksController::class, 'out'])->name('links.out');
